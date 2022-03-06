@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController      //Serve para falar que esta classe é um recurso Web que é implementado pelo controlador rest
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/users") //Serve para dizer que eles estarão nesse endereço.
 public class UserResource {
 
     @GetMapping

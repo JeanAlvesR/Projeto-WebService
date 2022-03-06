@@ -10,12 +10,11 @@ import java.util.Objects;
 
 //Os @ aqui são o mapeamento da classe para o JPA entender e transformar
 @Entity
-public class User implements Serializable {//Essa imprementação serve para que o objeto possa ser transformado em cadeia de bits
+public class User implements Serializable {//Essa implementação serve para que o objeto possa ser transformado em cadeia de bits
     private static final long serialVersionUID = 1L;
 
     @Id //em cima do atributo Id para falar que será ele o Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)// Serve para gerar o Id.
-
     private Long id;
     private String name;
     private String email;
