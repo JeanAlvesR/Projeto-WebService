@@ -15,7 +15,7 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @ManyToMany(mappedBy = "categories") //Desse jeito avisa que ela está mapeada com base em categories, list que está em produtos.
     private Set<Product> products = new HashSet<>();
 
     public Category() {

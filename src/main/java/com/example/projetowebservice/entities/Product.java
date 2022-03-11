@@ -1,5 +1,7 @@
 package com.example.projetowebservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -21,7 +23,11 @@ public class Product implements Serializable {
 
     //Usando o set, pois ele não permite repetição, o que faz sentido, afinal um produto não pode estar mais de uma vez na mesma categoria.
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", //Define o nome da tabela nova que associará as duas tabelas (produto e categoria), pois são muitos para muitos.
+            joinColumns = @JoinColumn(name = "product_id"), //Define a primeira chave estrangeira que, no caso, como está sendo definada dentro da classe Produto, será o id dela.
+            inverseJoinColumns = @JoinColumn(name = "category_id")) //Segunda chave estrangeira.
     private Set<Category> categories = new HashSet<>(); //Tem que instanciar para garantir que não comece com null
 
     public Product() {
