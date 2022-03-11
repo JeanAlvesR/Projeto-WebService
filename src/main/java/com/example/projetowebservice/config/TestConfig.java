@@ -1,9 +1,11 @@
 package com.example.projetowebservice.config;
 
 
+import com.example.projetowebservice.entities.Category;
 import com.example.projetowebservice.entities.Order;
 import com.example.projetowebservice.entities.User;
 import com.example.projetowebservice.entities.enums.OrderStatus;
+import com.example.projetowebservice.repositories.CategoryRepository;
 import com.example.projetowebservice.repositories.OrderRepository;
 import com.example.projetowebservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class TestConfig  implements CommandLineRunner { //Servirá para fazer o 
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     //Com a implementação e com o método run implementado, tudo que estiver dentro do escopo durando a inicialização da aplicação será executado
     public void run(String...args) throws Exception{
 
@@ -37,7 +42,11 @@ public class TestConfig  implements CommandLineRunner { //Servirá para fazer o 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 
+        Category cat1 = new Category(null, "Eletronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
 
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 
 
