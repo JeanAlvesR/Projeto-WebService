@@ -1,5 +1,7 @@
 package com.example.projetowebservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class User implements Serializable {//Essa implementação serve para que
     private String phone;
     private String password;
 
+    //O JPA não carrega a relação do lado dos muitos por padrão: Lazy Loading
+    @JsonIgnore
+    //Serve para quebrar o loop que se forma na hora da chamada do banco de dados, pois existe uma referenciação de mão dupla, isto é, User referencia Order e Order referencia User
     @OneToMany (mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
