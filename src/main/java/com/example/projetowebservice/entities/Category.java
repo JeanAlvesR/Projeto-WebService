@@ -1,5 +1,7 @@
 package com.example.projetowebservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories") //Desse jeito avisa que ela está mapeada com base em categories, list que está em produtos.
     private Set<Product> products = new HashSet<>();
 
