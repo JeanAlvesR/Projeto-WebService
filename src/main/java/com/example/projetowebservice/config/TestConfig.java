@@ -1,15 +1,9 @@
 package com.example.projetowebservice.config;
 
 
-import com.example.projetowebservice.entities.Category;
-import com.example.projetowebservice.entities.Order;
-import com.example.projetowebservice.entities.Product;
-import com.example.projetowebservice.entities.User;
+import com.example.projetowebservice.entities.*;
 import com.example.projetowebservice.entities.enums.OrderStatus;
-import com.example.projetowebservice.repositories.CategoryRepository;
-import com.example.projetowebservice.repositories.OrderRepository;
-import com.example.projetowebservice.repositories.ProductRepository;
-import com.example.projetowebservice.repositories.UserRepository;
+import com.example.projetowebservice.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +27,9 @@ public class TestConfig  implements CommandLineRunner { //Servirá para fazer o 
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     //Com a implementação e com o método run implementado, tudo que estiver dentro do escopo durando a inicialização da aplicação será executado
     public void run(String...args) throws Exception{
@@ -69,6 +66,14 @@ public class TestConfig  implements CommandLineRunner { //Servirá para fazer o 
         p5.getCategories().add(cat2);
 
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+
+
+        OrderItem oi1 = new OrderItem(o1,p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1,p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2,p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3,p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
 
     }
