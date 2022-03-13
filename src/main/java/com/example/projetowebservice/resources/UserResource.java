@@ -33,9 +33,15 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User obj) {
         obj = service.insert(obj);
-        //serve para mudar a resposta de confirmação do 200 para o 201, pois é um padrão http   
+        //serve para mudar a resposta de confirmação do 200 para o 201, pois é um padrão http
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
