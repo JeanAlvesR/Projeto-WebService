@@ -42,8 +42,8 @@ public class UserService {
 
     public User update(Long id, User obj) {
         Optional<User> entity = userRepository.findById(id);
-        updateData(entity.get(), obj);
-        return entity.get();
+        updateData(entity.orElseThrow(() -> new ResourceNotFoundException(id)), obj); //Usei desse jeito, pois estou usando o Optional, pois o getOne foi deprecated.
+        return entity.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     private void updateData(User entity, User obj) {
